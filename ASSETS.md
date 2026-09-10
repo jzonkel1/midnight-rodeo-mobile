@@ -15,4 +15,4 @@ Official public reels located during research:
 
 These show the exterior entrance/sign. Facebook supplied an embed option, but no stable direct video asset could be obtained for use as a background.
 
-Fonts are served by Google Fonts: Rye, Yellowtail, Barlow, and Barlow Condensed.
+The header and footer display the actual venue wordmark from the supplied Ladies Night flyer using a CSS crop. Headline lettering uses Alfa Slab One as a close visual match to the heavy slab-serif sign reference supplied by the user; this is not a claim to identify the original font. Other Google Fonts: Yellowtail, Barlow, and Barlow Condensed.
