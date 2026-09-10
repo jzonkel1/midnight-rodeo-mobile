@@ -47,10 +47,10 @@ const video = document.querySelector('#hero-video');
 const videoToggle = document.querySelector('.video-toggle');
 const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 const connection = navigator.connection;
-let videoUserPaused = false;
 let videoInView = true;
 function allowVideo() { return !motionPreference.matches && !connection?.saveData && !['slow-2g','2g'].includes(connection?.effectiveType); }
-function playVideo() { if (video.getAttribute('src') && allowVideo() && !videoUserPaused && videoInView && !document.hidden) video.play().catch(() => { videoToggle.hidden = false; videoToggle.innerHTML = '<span aria-hidden="true">▷</span> Play video'; videoToggle.setAttribute('aria-label','Play background video'); }); }
+function showPlayButton() { videoToggle.hidden = false; videoToggle.innerHTML = '<span aria-hidden="true">▷</span> Play video'; videoToggle.setAttribute('aria-label','Play background video'); }
+function playVideo() { if (video.getAttribute('src') && allowVideo() && videoInView && !document.hidden) video.play().catch(showPlayButton); }
 function setupVideo() {
  if (!allowVideo()) return;
  const small = window.matchMedia('(max-width: 760px)').matches;
@@ -58,11 +58,21 @@ function setupVideo() {
  video.muted = true;
  playVideo();
 }
-video.addEventListener('playing', () => { video.classList.add('ready'); videoToggle.hidden = false; videoToggle.innerHTML = '<span aria-hidden="true">Ⅱ</span> Pause video'; videoToggle.setAttribute('aria-label','Pause background video'); });
-video.addEventListener('pause', () => { videoToggle.innerHTML = '<span aria-hidden="true">▷</span> Play video'; videoToggle.setAttribute('aria-label','Play background video'); });
+video.addEventListener('playing', () => { video.classList.add('ready'); videoToggle.hidden = true; });
+video.addEventListener('pause', () => { if (videoInView && !document.hidden && video.getAttribute('src')) showPlayButton(); });
 video.addEventListener('error', () => { video.classList.remove('ready'); videoToggle.hidden = true; });
-videoToggle.addEventListener('click', () => { videoUserPaused = !video.paused; if (videoUserPaused) video.pause(); else playVideo(); });
+videoToggle.addEventListener('click', () => { playVideo(); });
 if ('IntersectionObserver' in window) new IntersectionObserver(entries => { videoInView = entries[0].isIntersecting; if (videoInView) playVideo(); else video.pause(); },{threshold:.1}).observe(document.querySelector('.hero'));
 document.addEventListener('visibilitychange', () => { if (document.hidden) video.pause(); else playVideo(); });
 motionPreference.addEventListener('change', () => { if (motionPreference.matches) { video.pause(); video.removeAttribute('src'); video.load(); video.classList.remove('ready'); videoToggle.hidden = true; } else setupVideo(); });
 if (document.readyState === 'complete') setupVideo(); else window.addEventListener('load',setupVideo,{once:true});
+
+// Sticky call bar stays down until the hero (and its own CTAs) have scrolled away.
+const mobileActions = document.querySelector('.mobile-actions');
+const heroSection = document.querySelector('.hero');
+if (mobileActions && heroSection) {
+ const syncActions = () => mobileActions.classList.toggle('show', window.scrollY > heroSection.offsetHeight - 90);
+ window.addEventListener('scroll', syncActions, { passive: true });
+ window.addEventListener('resize', syncActions);
+ syncActions();
+}

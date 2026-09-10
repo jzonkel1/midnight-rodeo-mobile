@@ -122,3 +122,15 @@ h1 strong{display:block;font-family:var(--script);font-weight:400;font-size:.94e
 
 /* honeypot */
 .hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* Sticky call bar: hidden until past the hero */
+.mobile-actions{transform:translateY(125%);transition:transform .28s ease;will-change:transform}
+.mobile-actions.show{transform:translateY(0)}
+@media (prefers-reduced-motion:reduce){.mobile-actions{transition:none}}
+/* hero foot centres when the play button isn't needed */
+@media(max-width:760px){.hero-foot:has(.video-toggle[hidden]){justify-content:center}}
+
+/* headline is their flyer slogan: shorter line, so give it more size */
+h1 span{letter-spacing:-.02em}
+@media(max-width:760px){h1{font-size:clamp(40px,11.4vw,82px)}}
+@media(max-width:360px){h1{font-size:42px}}
