@@ -36,9 +36,10 @@ flyerDialog.addEventListener('close',()=>document.body.classList.remove('locked'
 flyerDialog.addEventListener('click',event=>{if(event.target===flyerDialog){const r=flyerDialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)flyerDialog.close()}});
 document.querySelectorAll('[data-topic]').forEach(link=>link.addEventListener('click',()=>{document.querySelector('#topic').value=link.dataset.topic}));
 document.querySelector('#inquiry-form').addEventListener('submit',event=>{
- event.preventDefault();const data=new FormData(event.currentTarget);const subject='Midnight Rodeo inquiry: '+data.get('topic');const body='Hi Midnight Rodeo,\n\nMy name is '+data.get('name').trim()+'. I’m interested in '+data.get('topic')+'.\n\n'+data.get('message').trim()+'\n\nThank you!';
- window.location.href='mailto:mrcrp@mrcrp.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
- document.querySelector('#form-status').textContent='Finish sending in your email app. If it didn’t open, email mrcrp@mrcrp.com or call (361) 277-6336.';
+ // DEMO ONLY: on the live site this posts straight to the venue inbox.
+ event.preventDefault();
+ window.alert("Thanks for checking out this demo! The form isn't live yet — on your real site it sends straight to your inbox. Questions about the site? Call or text Zonkel Media at 361-658-2912 anytime.");
+ document.querySelector('#form-status').textContent='Demo form — on the live site this lands in the Midnight Rodeo inbox instantly.';
 });
 
 // Silent, lightweight motion. A still image stays visible if autoplay is blocked.
@@ -52,7 +53,8 @@ function allowVideo() { return !motionPreference.matches && !connection?.saveDat
 function playVideo() { if (video.getAttribute('src') && allowVideo() && !videoUserPaused && videoInView && !document.hidden) video.play().catch(() => { videoToggle.hidden = false; videoToggle.innerHTML = '<span aria-hidden="true">▷</span> Play video'; videoToggle.setAttribute('aria-label','Play background video'); }); }
 function setupVideo() {
  if (!allowVideo()) return;
- if (!video.getAttribute('src')) video.src = window.matchMedia('(max-width: 760px)').matches ? 'media/club-atmosphere-mobile.mp4' : 'media/club-atmosphere-desktop.mp4';
+ const small = window.matchMedia('(max-width: 760px)').matches;
+ if (!video.getAttribute('src')) { video.poster = small ? 'media/club-atmosphere-poster-mobile.jpg' : 'media/club-atmosphere-poster.jpg'; video.src = small ? 'media/club-atmosphere-mobile.mp4' : 'media/club-atmosphere-desktop.mp4'; }
  video.muted = true;
  playVideo();
 }

@@ -4,8 +4,8 @@ The hero video is illustrative licensed stock footage, not footage of Midnight R
 
 - Source: [People dancing at a night club — Mixkit 4344](https://mixkit.co/free-stock-video/people-dancing-at-a-night-club-4344/)
 - License: [Mixkit Stock Video Free License](https://mixkit.co/license/#videoFree), source page permits commercial and personal projects.
-- Derived files: `media/club-atmosphere-desktop.mp4` (960×540), `media/club-atmosphere-mobile.mp4` (640×360), and matching poster. Video is an eight-second silent trim, compressed with faststart and smoothed lighting changes.
-- Mobile playback downloads about 0.63 MB; desktop about 1.17 MB. Reduced-motion and data-saver preferences use the still poster. Playback pauses outside the hero or when the tab is hidden.
+- Derived files: `media/club-atmosphere-desktop.mp4` (1600×900) and `media/club-atmosphere-mobile.mp4` (720×1280, a 9:16 centre-right crop so phones get a true portrait source instead of a cover-cropped landscape one), plus `club-atmosphere-poster.jpg` (1600×900) and `club-atmosphere-poster-mobile.jpg` (720×1280). Both are eight-second silent trims from 3.4s (avoiding the bright flashes at ~2s and ~12s), denoised, 24fps, faststart.
+- Mobile playback downloads about 1.38 MB; desktop about 2.41 MB. Reduced-motion and data-saver preferences use the still poster. Playback pauses outside the hero or when the tab is hidden.
 
 Venue-provided promotional flyers and logo were retained from the existing demo. Supporting crowd and whiskey photos were also retained; they have not been verified as venue photography.
 
@@ -17,4 +17,4 @@ These show the exterior entrance/sign. Facebook supplied an embed option, but no
 
 The header and footer display the actual venue wordmark from the supplied Ladies Night flyer using a CSS crop. Headline lettering uses Alfa Slab One as a close visual match to the heavy slab-serif sign reference supplied by the user; this is not a claim to identify the original font. Other Google Fonts: Barlow and Barlow Condensed. The Barlow family handles text and headings; the slab face is reserved for emphasis.
 
-Hero wording “The legend returns” comes from the venue’s Facebook bio; “Dancehall. Country. Good vibes.” appears on its promotional flyers.
+Hero wording is now “A little country, a little wild.” — agency copy, not a venue quote. “The legend returns” (venue Facebook bio) and “Dancehall. Country. Good vibes.” (their flyers) both still appear elsewhere on the page. The script face is Kaushan Script, chosen to echo the brush script on their own flyers.

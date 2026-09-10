@@ -119,3 +119,6 @@ h1 strong{display:block;font-family:var(--script);font-weight:400;font-size:.94e
   .hero-sub{font-size:15px;max-width:31ch;margin-bottom:24px}
 }
 @media(max-width:360px){h1{font-size:40px}.hero-sub{font-size:14px;max-width:29ch}}
+
+/* honeypot */
+.hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
